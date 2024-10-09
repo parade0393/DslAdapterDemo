@@ -65,11 +65,11 @@ class SquareFragment : Fragment() {
                 }
             }*/
             //因为[it.datas.size]的数量小于[pageSize], 所以没有触发加载更多
-            dslAdapter.loadDataEnd(DslHomeArticleItem::class.java, it.datas, null, Page().apply {
+            dslAdapter.loadDataEnd(DslHomeArticleItem::class, it.datas, null, Page().apply {
                 firstPageIndex = 0
                 requestPageIndex = loadPage
                 requestPageSize = pageSize
-            }, ) {
+            }, true) {
                 articleInfo = it
             }
         }
