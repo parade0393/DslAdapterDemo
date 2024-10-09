@@ -54,6 +54,7 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.converter.gson)
     implementation(libs.glide)
+    implementation(libs.baserecyclerviewadapterhelper4)
 
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)

@@ -1,6 +1,7 @@
 [versions]
 agp = "8.5.0"
 banner = "2.2.3"
+baserecyclerviewadapterhelper4 = "4.1.6"
 dsladapter = "6.0.3"
 fragmentKtx = "1.8.4"
 glide = "4.16.0"
@@ -23,6 +24,7 @@ androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref
 androidx-lifecycle-livedata-ktx = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "lifecycleViewmodelKtx" }
 androidx-lifecycle-viewmodel-ktx = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 banner = { module = "io.github.youth5201314:banner", version.ref = "banner" }
+baserecyclerviewadapterhelper4 = { module = "io.github.cymchad:BaseRecyclerViewAdapterHelper4", version.ref = "baserecyclerviewadapterhelper4" }
 converter-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 dsladapter = { module = "com.github.angcyo:DslAdapter", version.ref = "dsladapter" }
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
