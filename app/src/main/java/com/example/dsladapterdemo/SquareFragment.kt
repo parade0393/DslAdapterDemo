@@ -9,6 +9,8 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angcyo.dsladapter.DslAdapter
+import com.angcyo.dsladapter.data.Page
+import com.angcyo.dsladapter.data.loadDataEnd
 import com.angcyo.dsladapter.data.updateSingleData
 import com.example.dsladapterdemo.databinding.FragmentExploreBinding
 import com.example.dsladapterdemo.databinding.FragmentSquareBinding
@@ -55,12 +57,20 @@ class SquareFragment : Fragment() {
         }
 
         viewModel.articleList.observe(viewLifecycleOwner){
-            dslAdapter.updateSingleData<DslHomeArticleItem>(it.datas,loadPage,pageSize){ data->
+            /*dslAdapter.updateSingleData<DslHomeArticleItem>(it.datas,loadPage,pageSize){ data->
                 data?.let { item->
                     (item as? ArticleInfo)?.let { info ->
                         articleInfo = info
                     }
                 }
+            }*/
+            //因为[it.datas.size]的数量小于[pageSize], 所以没有触发加载更多
+            dslAdapter.loadDataEnd(DslHomeArticleItem::class, it.datas, null, Page().apply {
+                firstPageIndex = 0
+                requestPageIndex = loadPage
+                requestPageSize = pageSize
+            }, true) {
+                articleInfo = it
             }
         }
 
