@@ -15,9 +15,9 @@ class DslHomeArticleItem : DslAdapterItem() {
 
     init {
         itemLayoutId = R.layout.dsl_article_home_item
-        thisAreItemsTheSame = { fromItem, newItem, oldItemPosition, newItemPosition ->
+        /*thisAreItemsTheSame = { fromItem, newItem, oldItemPosition, newItemPosition ->
             this.articleInfo?.id == (newItem as DslHomeArticleItem).articleInfo?.id
-        }
+        }*/
     }
 
     var articleInfo: ArticleInfo? = null
@@ -31,7 +31,7 @@ class DslHomeArticleItem : DslAdapterItem() {
         payloads: List<Any>
     ) {
         super.onItemBind(itemHolder, itemPosition, adapterItem, payloads)
-        itemBinding = itemBinding ?: DslArticleHomeItemBinding.bind(itemHolder.itemView)
+        itemBinding = /*itemBinding ?:*/ DslArticleHomeItemBinding.bind(itemHolder.itemView)
         itemBinding?.apply {
             articleInfo?.let { bean ->
                 tvAuthor.text = bean.articleAuthor

@@ -10,6 +10,9 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angcyo.dsladapter.DslAdapter
+import com.angcyo.dsladapter.data.Page
+import com.angcyo.dsladapter.data.loadDataEnd
+import com.angcyo.dsladapter.data.loadDataEndIndex
 import com.angcyo.dsladapter.data.updateSingleData
 import com.example.dsladapterdemo.databinding.FragmentExploreBinding
 
@@ -56,7 +59,7 @@ class ExploreFragment : Fragment() {
 
 
         viewModel.articleList.observe(viewLifecycleOwner){
-            dslAdapter.updateSingleData<DslHomeArticleItem>(it.datas,loadPage,pageSize, {
+            /*dslAdapter.updateSingleData<DslHomeArticleItem>(it.datas,loadPage,pageSize, {
                 startPage = 0
                 pageSize = 10
             }){ data->
@@ -65,6 +68,13 @@ class ExploreFragment : Fragment() {
                         articleInfo = info
                     }
                 }
+            }*/
+            dslAdapter.loadDataEnd(DslHomeArticleItem::class.java, it.datas, null, Page().apply {
+                firstPageIndex = 0
+                requestPageIndex = loadPage
+                requestPageSize = pageSize
+            }){
+                articleInfo = it
             }
         }
 
