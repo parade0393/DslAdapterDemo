@@ -56,7 +56,10 @@ class ExploreFragment : Fragment() {
 
 
         viewModel.articleList.observe(viewLifecycleOwner){
-            dslAdapter.updateSingleData<DslHomeArticleItem>(it.datas,loadPage,pageSize){ data->
+            dslAdapter.updateSingleData<DslHomeArticleItem>(it.datas,loadPage,pageSize, {
+                startPage = 0
+                pageSize = 10
+            }){ data->
                 data?.let { item->
                     (item as? ArticleInfo)?.let { info ->
                         articleInfo = info

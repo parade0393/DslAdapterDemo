@@ -1,5 +1,5 @@
 [versions]
-agp = "8.6.0"
+agp = "8.5.0"
 banner = "2.2.3"
 dsladapter = "6.0.3"
 fragmentKtx = "1.8.4"
