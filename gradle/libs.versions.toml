@@ -2,7 +2,7 @@
 agp = "8.5.0"
 banner = "2.2.3"
 baserecyclerviewadapterhelper4 = "4.1.6"
-dsladapter = "6.0.3"
+dsladapter = "6.0.4"
 fragmentKtx = "1.8.4"
 glide = "4.16.0"
 kotlin = "1.9.0"
