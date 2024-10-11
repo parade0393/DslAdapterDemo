@@ -21,7 +21,7 @@ class MainViewModel : ViewModel() {
     }
 
 
-    private val _banners = MutableLiveData<List<Banner>>(emptyList())
+    private val _banners = MutableLiveData<List<Banner>>()
     val banners: LiveData<List<Banner>> = _banners
 
     fun getBanner(){

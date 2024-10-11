@@ -10,10 +10,14 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.angcyo.dsladapter.DslAdapter
+import com.angcyo.dsladapter.DslAdapterStatusItem
+import com.angcyo.dsladapter.DslItemDecoration
 import com.angcyo.dsladapter.data.Page
 import com.angcyo.dsladapter.data.loadDataEnd
 import com.angcyo.dsladapter.data.loadDataEndIndex
 import com.angcyo.dsladapter.data.updateSingleData
+import com.angcyo.dsladapter.dp
+import com.angcyo.dsladapter.dpi
 import com.example.dsladapterdemo.databinding.FragmentExploreBinding
 
 class ExploreFragment : Fragment() {
@@ -50,6 +54,7 @@ class ExploreFragment : Fragment() {
         binding.main.apply {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = dslAdapter
+            addItemDecoration(DslItemDecoration())
         }
 
         dslAdapter.dslLoadMoreItem.onLoadMore = {
@@ -73,11 +78,17 @@ class ExploreFragment : Fragment() {
                 firstPageIndex = 0
                 requestPageIndex = loadPage
                 requestPageSize = pageSize
-            }){
+            },true){
                 articleInfo = it
+                itemLeftInsert = 10*dpi
+                itemRightInsert = 10 * dpi
+                itemBottomInsert = 10*dpi
             }
         }
 
+        dslAdapter.render {
+            setAdapterStatus(DslAdapterStatusItem.ADAPTER_STATUS_LOADING)
+        }
         viewModel.getArticleList(loadPage,pageSize)
 
     }

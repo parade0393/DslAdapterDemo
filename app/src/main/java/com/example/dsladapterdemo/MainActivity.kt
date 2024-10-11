@@ -10,6 +10,8 @@ import com.bumptech.glide.Glide
 import com.example.dsladapterdemo.databinding.ActivityMainBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import com.scwang.smart.refresh.footer.ClassicsFooter
+import com.scwang.smart.refresh.header.ClassicsHeader
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder
 import com.youth.banner.indicator.CircleIndicator
@@ -25,6 +27,19 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+
+        //SmartRefreshLayout
+        binding.main.apply {
+            setRefreshHeader(ClassicsHeader(this@MainActivity))
+            setRefreshFooter(ClassicsFooter(this@MainActivity))
+            autoRefresh()
+            setEnableRefresh(true)
+            setEnableLoadMore(false)
+            setOnRefreshListener {
+                fresh()
+            }
+        }
 
         //banner
         val adapter = object : BannerImageAdapter<Banner>(emptyList()) {
@@ -51,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         //Observer
         viewModel.banners.observe(this) {
             binding.banner.setDatas(it)
+            binding.main.finishRefresh()
         }
 
         childAdapter = HomeChildFragmentAdapter(items, supportFragmentManager, lifecycle)
@@ -62,7 +78,11 @@ class MainActivity : AppCompatActivity() {
 
 
         //RequestData
-        viewModel.getBanner()
+//        viewModel.getBanner()
 
+    }
+
+    private fun fresh(){
+        viewModel.getBanner()
     }
 }
